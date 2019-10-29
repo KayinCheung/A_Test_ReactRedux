@@ -17,6 +17,8 @@ const middleware = [thunk]
 
 describe('Video Component', () => {
 
+    //If page is entered by clicking Rewatch on history page, or clicking the carousel image.
+    //It will have the relevant data
     describe('With Movie Data', () => {
         const initialState = {
             position: {

@@ -1,6 +1,4 @@
-
 import { POST_HISTORY } from './types'
-
 
 export const postHistoryActions = (history) => (dispatch) => {
 

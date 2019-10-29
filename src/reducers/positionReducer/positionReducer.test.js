@@ -14,7 +14,7 @@ describe('Position Reducer', () => {
         })
     })
 
-    it('CLICK_VIDEO should return new state', () => {
+    it('CLICK_VIDEO should replace OLD movie with NEW movie, replace OLD position/currentVideoIndex with NEW currentVideoIndex', () => {
 
         const currentState = {
             position: 6,
@@ -39,7 +39,7 @@ describe('Position Reducer', () => {
         })
     })
 
-    it('LEFT_ARROW should return current state, position reduced by 1', () => {
+    it('LEFT_ARROW should return current state, but with position reduced by 1', () => {
         const currentState = {
             position: 3,
             total: 29,

@@ -1,4 +1,4 @@
-import { LEFT_ARROW, RIGHT_ARROW, ENTER_KEY, CLICK_VIDEO } from '../../actions/types'
+import { LEFT_ARROW, RIGHT_ARROW, ENTER_KEY, CLICK_VIDEO, RESET_POSITION } from '../../actions/types'
 
 const initialState = {
     position: 0,
@@ -21,6 +21,7 @@ export default function (state = initialState, action){
             }
 
         case ENTER_KEY:
+        
         return {
             ...state,
             currentVideoIndex: state.position,
@@ -33,6 +34,13 @@ export default function (state = initialState, action){
             position: action.currentVideoIndex,
             currentVideoIndex: action.currentVideoIndex,
             movie: action.movie
+        }
+
+        case RESET_POSITION:
+        return {
+            ...state,
+            position: 0,
+            currentVideoIndex: 0
         }
 
         default:

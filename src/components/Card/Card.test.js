@@ -8,12 +8,10 @@ configure({ adapter: new Adapter() });
 
 
 describe('Card Component', () => {
-    const mockFn = jest.fn();
     let props = {
         movie: mockMovieData,
         position: 1,
         selectedPosition: 1,
-        videoClick: mockFn
     }
     //Ensure the div containing data-test='Card' is rendered once
     it('Card should render', () => {

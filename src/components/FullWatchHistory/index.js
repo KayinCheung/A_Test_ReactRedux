@@ -8,29 +8,34 @@ import Header from '../Header'
 
 import { DateConvert } from '../../pureFunctions/DateConvert'
 import { videoClick } from '../../actions/videoClickActions'
-import { Link } from 'react-router-dom'
+import { ArrowNavigation } from '../../pureFunctions/ArrowNavigation';
 
-class FullWatchHistory extends React.Component  {
+
+/*
+    On load
+    1) GET request to load user's first page of history
+    2) Add document.onkeydown to handle left/right paging, and up/down keys for menu navigation
+*/
+class FullWatchHistory extends React.Component {
 
     componentDidMount() {
-        let { getHistoryActions, history, current_page, pages } = this.props
+        let { getHistoryActions } = this.props
         getHistoryActions(username, 0)
         document.onkeydown = (e) => {
             this.handleKeyDown(e)
+            ArrowNavigation(e)
         }
     }
 
-    handleKeyDown(e){
-        let { getHistoryActions, history, current_page, pages } = this.props
+    //Left key for last page, right key for next page
+    handleKeyDown(e) {
+        let { getHistoryActions, current_page, pages } = this.props
 
         switch (e.key) {
             case "ArrowLeft":
-                console.log("left")
                 getHistoryActions(username, Math.max(0, current_page - 1))
                 break;
             case "ArrowRight":
-                console.log("right", pages, current_page)
-                
                 getHistoryActions(username, Math.min(pages, current_page + 1))
                 break;
             default:
@@ -42,49 +47,32 @@ class FullWatchHistory extends React.Component  {
 
     render() {
 
-        let { history, videoClick, getHistoryActions, current_page, pages } = this.props
-
-        return (
-            <div>
-                <Header />
-                <div className="is-centered container" data-test="FullWatchHistory">
-                    <div className="buttons is-centered">
-                        <button className="is-link button"
-                            onClick={() => getHistoryActions(username, Math.max(0, current_page - 1))}
-                        >Prev</button>
-                        <button className="is-link button"
-                            onClick={() => getHistoryActions(username, Math.min(pages, current_page + 1))}
-                        >Next</button>
-                    </div>
-                    <p className="has-text-centered">Page {current_page + 1} of {pages + 1}</p><br />
-                    <table className="table">
+        let { history, getHistoryActions, current_page, pages } = this.props
+        let table = ''
+        if (history === null) return
+        if (history.length != 0) {
+            table = (
+                <div>
+                    <table className="table" data-test="HistoryTable">
                         <thead>
                             <tr>
                                 <th></th>
-
                                 <th>Title</th>
                                 <th>Description</th>
                                 <th>Watch Date</th>
-                                <th></th>
+
                             </tr>
                         </thead>
                         <tbody>
-                            {history.map(data => {
-                                let movie = {
-                                    title: data.title,
-                                    contents: [{ "url": data.videoUrl }],
-                                    images: [{ "url": data.imageUrl }],
-                                    description: data.description
-                                }
+                            {history.map((data, i) => {
                                 let [date, time] = DateConvert(data.createdAt)
                                 return (
-                                    <tr key={data.createdAt} data-test="HistoryTableRow">
+                                    <tr key={data.createdAt} data-test="HistoryTableRow" id={`row${i}`}>
                                         <td><img src={data.imageUrl} /></td>
                                         <td>{data.title}</td>
                                         <td>{data.description}</td>
                                         <td>{date}<br />{time}</td>
-                                        <td><Link to="/video"><button className="button is-primary" onClick={() => { videoClick(movie, 0) }}
-                                        >Rewatch</button></Link></td>
+
                                     </tr>
                                 )
                             })}
@@ -100,6 +88,25 @@ class FullWatchHistory extends React.Component  {
                             onClick={() => getHistoryActions(username, Math.min(pages, current_page + 1))}
                         >Next</button>
                     </div>
+                </div>
+            )
+        }
+        return (
+            <div>
+                <Header />
+                <div className="is-centered container" data-test="FullWatchHistory">
+                    <div className="buttons is-centered">
+                        <button className="is-link button"
+                            onClick={() => getHistoryActions(username, Math.max(0, current_page - 1))}
+                        >Prev</button>
+                        <button className="is-link button"
+                            onClick={() => getHistoryActions(username, Math.min(pages, current_page + 1))}
+                        >Next</button>
+                    </div>
+                    <p className="has-text-centered">Page {current_page + 1} of {pages + 1}</p><br />
+
+                    {table}
+
                 </div>
             </div>
         );

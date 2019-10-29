@@ -1,4 +1,3 @@
-
 import { GET_HISTORY, START_GET_HISTORY } from './types'
 
 export const getHistoryActions = (username, page) => (dispatch) => {

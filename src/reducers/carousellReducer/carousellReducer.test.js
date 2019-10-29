@@ -12,7 +12,7 @@ describe('Carousell Reducer', () => {
         })
     })
 
-    it('CAROUSELL_LOADED should return new state', () => {
+    it('CAROUSELL_LOADED should return payload as new state', () => {
         const payload = {
             entries: [1, 2, 3, 4],
             totalCount: 5,

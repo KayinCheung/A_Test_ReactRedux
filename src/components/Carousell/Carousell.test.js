@@ -35,6 +35,10 @@ const teststore = createStore(
     )
 )
 
+/*
+Checks if the Carousell renders, and if number of cards rendered = number of entries
+*/
+
 describe('Carousell Component', () => {
     const component = mount(
         <MemoryRouter initialEntries={['/']}>

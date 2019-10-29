@@ -1,6 +1,5 @@
 import { CLICK_VIDEO, CHANGE_VIEW } from './types'
 
-
 export const videoClick = (movie, currentVideoIndex) => (dispatch) => {
     console.log('vid click')
     dispatch({
@@ -8,6 +7,4 @@ export const videoClick = (movie, currentVideoIndex) => (dispatch) => {
         movie: movie,
         index: currentVideoIndex
     })
-
-   
 }
