@@ -1,83 +1,76 @@
-import React from 'react';
-import Video from './index';
+import React from "react";
+import Video from "./index";
 
-import { shallow, configure, mount } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-import { mockEntries } from '../../mock'
+import { shallow, configure, mount } from "enzyme";
+import Adapter from "enzyme-adapter-react-16";
+import { mockEntries } from "../../mock";
 
-import rootReducer from '../../reducers/index'
-import { createStore, applyMiddleware, compose } from 'redux'
-import thunk from 'redux-thunk'
+import rootReducer from "../../reducers/index";
+import { createStore, applyMiddleware, compose } from "redux";
+import thunk from "redux-thunk";
 import { MemoryRouter } from "react-router";
 
 configure({ adapter: new Adapter() });
 
-const middleware = [thunk]
+const middleware = [thunk];
 
+describe("Video Component", () => {
+  //If page is entered by clicking Rewatch on history page, or clicking the carousel image.
+  //It will have the relevant data
+  describe("With Movie Data", () => {
+    const initialState = {
+      position: {
+        selectedPosition: 1,
+        lastInteractPosition: 1,
+        movie: mockEntries[1]
+      }
+    };
 
-describe('Video Component', () => {
+    const teststore = createStore(
+      rootReducer,
+      initialState,
+      compose(applyMiddleware(...middleware))
+    );
 
-    //If page is entered by clicking Rewatch on history page, or clicking the carousel image.
-    //It will have the relevant data
-    describe('With Movie Data', () => {
-        const initialState = {
-            position: {
-                selectedPosition: 1,
-                lastInteractPosition: 1,
-                movie: mockEntries[1]
-            }
-        }
+    const component = mount(
+      <MemoryRouter initialEntries={["/video"]}>
+        <Video store={teststore} />
+      </MemoryRouter>
+    );
 
-        const teststore = createStore(
-            rootReducer,
-            initialState,
-            compose(
-                applyMiddleware(...middleware),
-            )
-        )
+    //Ensure the div containing data-test='Video' is rendered once
+    it("Video container should render", () => {
+      const VideoComponent = component.find(`[data-test='VideoComponent']`);
+      expect(VideoComponent.length).toBe(1);
+    });
+  });
 
-        const component = mount(
-            <MemoryRouter initialEntries={['/video']}>
-                <Video store={teststore} />
-            </MemoryRouter>
-        )
+  //If no movie data, (Eg user directly visit /video), the component will re-direct to home and return null
+  describe("With NO Movie Data", () => {
+    const initialState = {
+      position: {
+        selectedPosition: 0,
+        lastInteractPosition: 0,
+        movie: null
+      }
+    };
 
-        //Ensure the div containing data-test='Video' is rendered once
-        it('Video container should render', () => {
-            const VideoComponent = component.find(`[data-test='VideoComponent']`);
-            expect(VideoComponent.length).toBe(1);
-        })
-    })
+    const teststore = createStore(
+      rootReducer,
+      initialState,
+      compose(applyMiddleware(...middleware))
+    );
 
-    //If no movie data, (Eg user directly visit /video), the component will re-direct to home and return null
-    describe('With NO Movie Data', () => {
-        const initialState = {
-            position: {
-                selectedPosition: 0,
-                lastInteractPosition: 0,
-                movie: null
-            }
-        }
+    const component = mount(
+      <MemoryRouter initialEntries={["/video"]}>
+        <Video store={teststore} />
+      </MemoryRouter>
+    );
 
-        const teststore = createStore(
-            rootReducer,
-            initialState,
-            compose(
-                applyMiddleware(...middleware),
-            )
-        )
-
-        const component = mount(
-            <MemoryRouter initialEntries={['/video']}>
-                <Video store={teststore} />
-            </MemoryRouter>
-        )
-
-        //Ensure the div containing data-test='Video' not rendered
-        it('Video container should NOT render', () => {
-            const VideoComponent = component.find(`[data-test='VideoComponent']`);
-            expect(VideoComponent.length).toBe(0);
-        })
-    })
-
+    //Ensure the div containing data-test='Video' not rendered
+    it("Video container should NOT render", () => {
+      const VideoComponent = component.find(`[data-test='VideoComponent']`);
+      expect(VideoComponent.length).toBe(0);
+    });
+  });
 });

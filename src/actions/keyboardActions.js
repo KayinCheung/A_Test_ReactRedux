@@ -1,28 +1,29 @@
-import { LEFT_ARROW, RIGHT_ARROW, ENTER_KEY } from './types'
+import { LEFT_ARROW, RIGHT_ARROW, ENTER_KEY } from "./types";
 
-export const keyDown = (e, movie) => (dispatch) => {
-    switch (e.key) {
-        case "ArrowLeft":
-            dispatch({
-                type: LEFT_ARROW
-            })
-            break
+//Handles keyboard navigation for carousell
+export const keyDown = (e, movie) => dispatch => {
+  switch (e.key) {
+    case "ArrowLeft":
+      dispatch({
+        type: LEFT_ARROW
+      });
+      break;
 
-        case "ArrowRight":
-            dispatch({
-                type: RIGHT_ARROW
-            })
-            break
+    case "ArrowRight":
+      dispatch({
+        type: RIGHT_ARROW
+      });
+      break;
 
-        case "Enter":
-            dispatch({
-                type: ENTER_KEY,
-                movie: movie
-            })
-            
-            break
+    case "Enter":
+      dispatch({
+        type: ENTER_KEY,
+        movie: movie
+      });
 
-        default:
-            break
-    }
-}
+      break;
+
+    default:
+      break;
+  }
+};
