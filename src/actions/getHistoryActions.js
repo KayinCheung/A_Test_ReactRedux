@@ -1,11 +1,12 @@
 import { GET_HISTORY, START_GET_HISTORY } from "./types";
+import { apiUrl } from "../config";
 
 export const getHistoryActions = (loaded, username, page) => dispatch => {
   if (loaded === false) return;
   dispatch({
     type: START_GET_HISTORY
   });
-  fetch(`http://localhost:5000/history?username=${username}&page=${page}`)
+  fetch(`${apiUrl}/history?username=${username}&page=${page}`)
     .then(data => {
       if (data.status === 200) {
         data.json().then(data => {

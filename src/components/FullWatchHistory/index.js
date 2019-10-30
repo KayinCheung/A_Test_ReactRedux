@@ -12,7 +12,7 @@ import { ArrowNavigation } from "../../helperFunctions/ArrowNavigation";
 
 /*
     /history page
-    
+
     On load
     1) GET request to load user's first page of history
     2) Add document.onkeydown to handle left/right paging, and up/down keys for menu navigation
@@ -142,6 +142,7 @@ class FullWatchHistory extends React.Component {
           <p className="has-text-centered">
             Your recent views
             <br />
+            {loaded === false ? <i class="fas fa-spinner fa-spin" /> : ""}
             {loaded === true && history.length === 0 ? "No view history" : ""}
           </p>
           {history.length >= 5 ? paging : ""}

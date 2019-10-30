@@ -6,7 +6,7 @@
   overflow-x: scroll;
   padding-bottom: 50px;
   padding-top: 50px;
-  padding-left:10px;
+  padding-left: 10px;
   height: 550px;
   -webkit-overflow-scrolling: touch;
 }
@@ -14,19 +14,17 @@
 .carousell-wrapper {
   overflow: hidden;
   height: 450px;
-
 }
 
-.movie{
+.movie {
   padding: 0;
   overflow-x: hidden;
 }
 
-.movieimg { 
-  outline: 1px solid blue; 
-} 
+.movieimg {
+  outline: 1px solid blue;
+}
 
-.body { 
-  width: 80%; 
-} 
-
+.body {
+  width: 80%;
+}

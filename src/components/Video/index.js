@@ -58,7 +58,7 @@ class Video extends React.Component {
     //Back to homepage when video finished
     if (document.getElementById("video")) {
       let video = videojs("video");
-      video.play()
+      video.play();
       video.on("ended", function() {
         window.location.href = "/";
       });

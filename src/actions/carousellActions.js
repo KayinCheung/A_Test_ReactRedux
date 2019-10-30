@@ -4,13 +4,15 @@ import {
   RESET_POSITION
 } from "./types";
 
+import { apiUrl } from "../config";
+
 //Load the homepage carousell
 export const loadCarousell = () => dispatch => {
   dispatch({
     type: START_CAROUSELL_LOAD
   });
 
-  fetch("http://localhost:5000/moviedata")
+  fetch(`${apiUrl}/moviedata`)
     .then(data => {
       if (data.status === 200) {
         data.json().then(data => {

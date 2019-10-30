@@ -43,7 +43,7 @@ describe("Carousell Component", () => {
       <Carousell store={teststore} />
     </MemoryRouter>
   );
-  
+
   //Ensure the div containing data-test='Carousell' is rendered once
   it("Carousell container should render", () => {
     const CarousellComponent = component.find(`[data-test='Carousell']`);
