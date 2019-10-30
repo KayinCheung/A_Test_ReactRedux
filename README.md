@@ -7,8 +7,11 @@ To run the front end locally,
 
 ## Tech stack
 JS - ReactJS, Redux, React Router
+
 CSS - Bulma
+
 Deployment - AWS EC2 with Nginx
+
 Unit test - Jest
 
 ## Features
