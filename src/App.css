@@ -28,6 +28,19 @@
   width: 80%;
 }
 
-.headerRight{
-  float:right;
+.headerWrapper {
+  margin: auto;
+  padding: 10px;
+}
+.one {
+  width: 50%;
+  float: left;
+}
+.two {
+  margin-left: 50%;
+}
+
+.videoStyle{
+  margin: auto;
+  max-width: 100vw;
 }

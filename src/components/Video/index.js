@@ -51,6 +51,11 @@ class Video extends React.Component {
           case "ArrowLeft":
             video.currentTime(video.currentTime() - 10);
             break;
+          case "f":
+            video.requestFullscreen();
+            break;
+          default:
+            break;
         }
       }
     };
@@ -90,8 +95,7 @@ class Video extends React.Component {
             Now Playing: {movie.title}
             <video
               id="video"
-              style={{ margin: "auto" }}
-              className="video-js fullscreen"
+              className="video-js videoStyle"
               controls
               preload="auto"
             >
