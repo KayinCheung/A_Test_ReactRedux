@@ -78,7 +78,7 @@ describe("Position Reducer", () => {
     });
   });
 
-  it("RIGHT_ARROW should return current state, with position increased by 1 (Max of total - 1)", () => {
+  it("RIGHT_ARROW should return current state, with position increased by 1 (Max of (total - 1))", () => {
     const currentState = {
       position: 5,
       total: 29,

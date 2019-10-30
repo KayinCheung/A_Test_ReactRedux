@@ -1,9 +1,9 @@
 import React from "react";
 import Card from "./index";
-
 import { shallow, configure } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import { mockMovieData } from "../../mock";
+
 configure({ adapter: new Adapter() });
 
 describe("Card Component", () => {

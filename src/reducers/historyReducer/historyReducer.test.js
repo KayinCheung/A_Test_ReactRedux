@@ -12,7 +12,7 @@ describe("History Reducer", () => {
     });
   });
 
-  it("GET_HISTORY should return payload as new state", () => {
+  it("GET_HISTORY should return payload as a new state", () => {
     const payload = {
       history: [1, 2, 3, 4, 5],
       loaded: true,

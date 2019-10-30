@@ -55,8 +55,7 @@ class FullWatchHistory extends React.Component {
       pages,
       loaded
     } = this.props;
-    console.log(current_page);
-    console.log(pages);
+
     let table = "";
     let paging = "";
 
@@ -100,10 +99,10 @@ class FullWatchHistory extends React.Component {
           <table className="table" data-test="HistoryTable">
             <thead>
               <tr>
-                <th />
-                <th>Title</th>
-                <th>Description</th>
-                <th>Watch Date</th>
+                <th className="col1" />
+                <th className="col2">Title</th>
+                <th className="col3">Description</th>
+                <th className="col4">Watch Date</th>
               </tr>
             </thead>
             <tbody>
@@ -116,7 +115,7 @@ class FullWatchHistory extends React.Component {
                     id={`row${i}`}
                   >
                     <td>
-                      <img src={data.imageUrl} />
+                      <img src={data.imageUrl}/>
                     </td>
                     <td>{data.title}</td>
                     <td>{data.description}</td>
@@ -142,14 +141,15 @@ class FullWatchHistory extends React.Component {
           <p className="has-text-centered">
             Your recent views
             <br />
-            {loaded === false ? <i class="fas fa-spinner fa-spin" /> : ""}
+            {loaded === false ? <i className="fas fa-spinner fa-spin" /> : ""}
             {loaded === true && history.length === 0 ? "No view history" : ""}
           </p>
-          {history.length >= 5 ? paging : ""}
+          {paging}
           <br />
           {table}
           <br />
-          {paging}
+          {history.length >= 3 ? paging : ""}
+
         </div>
       </div>
     );
