@@ -53,7 +53,7 @@ class Carousell extends React.Component {
           <p className="has-text-centered">Video List</p>
           <div className="carousell-wrapper">
             <div className="carousell" id="carousell-scroll">
-              <div className="columns">
+              <div className="columns is-mobile">
                 {entries.map(function(movie, i) {
                   //Loop out individual movie into cards
                   return (

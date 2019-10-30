@@ -17,8 +17,7 @@
 }
 
 .movie {
-  padding: 0;
-  overflow-x: hidden;
+  min-width: 220px;
 }
 
 .movieimg {
@@ -27,4 +26,8 @@
 
 .body {
   width: 80%;
+}
+
+.headerRight{
+  float:right;
 }

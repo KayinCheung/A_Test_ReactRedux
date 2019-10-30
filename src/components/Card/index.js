@@ -19,7 +19,6 @@ class Card extends React.Component {
       <div
         id={`view-${position}${movie.title}`}
         className="column movie"
-        style={{ minWidth: 220 }}
         data-test="Card"
       >
         <div>
