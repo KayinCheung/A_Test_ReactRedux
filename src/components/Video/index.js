@@ -88,7 +88,7 @@ class Video extends React.Component {
         <Header />
         <div
           key={`${movie.title}`}
-          className="container body"
+          className="container"
           data-test="VideoComponent"
         >
           <div className="is-centered has-text-centered">
