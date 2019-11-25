@@ -1,7 +1,5 @@
 ## Front end of VOD application
 
-Deployed live at: http://18.136.211.239/
-
 To run the front end locally,
 `npm install`, `npm start`
 
